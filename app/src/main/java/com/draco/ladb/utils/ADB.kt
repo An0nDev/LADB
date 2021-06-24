@@ -73,6 +73,8 @@ class ADB(private val context: Context) {
     private fun initializeADBShell() {
         debug("Starting ADB client")
         adb(false, listOf("start-server"))?.waitFor()
+        debug("Restarting client in root mode")
+        adb(false, listOf("root"))?.waitFor()
         debug("Waiting for device to be found")
         adb(false, listOf("wait-for-device"))?.waitFor()
 
